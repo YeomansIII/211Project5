@@ -1,24 +1,52 @@
 
 public class LLNode implements Node {
 
+	@SuppressWarnings("rawtypes")
 	private Comparable data;
-	private Node next;
-	private Node prev;
+	protected LLNode next;
+	protected LLNode prev;
 	
+	@SuppressWarnings("rawtypes")
+	public LLNode(Comparable c) {
+		data = c;
+	}
+	
+	@SuppressWarnings("rawtypes")
 	@Override
 	public Comparable getData() {
-		// TODO Auto-generated method stub
+		
 		return data;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Node add(Node thing) {
 		// TODO Auto-generated method stub
-		Node start;
+		LLNode start;
+		LLNode current = this;
+		while(current.next != null) {
+			if(current.getData().compareTo(thing.getData()) < current.next.getData().compareTo(thing.getData())) {
+				System.out.println("Success Add IF STATEMENT");
+				current.next.setPrev(thing);
+				current.setNext(thing);
+				break;
+			} else {
+				current = current.next;
+			}
+		}
+		if(current.next==null) {
+			current.setNext(thing);
+		}
 		
-		return null;
+		current = this;
+		while(current.prev != null) {
+			current = current.prev;
+		}
+		
+		return current;
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public Node search(Comparable item) {
 		// TODO Auto-generated method stub
@@ -27,14 +55,12 @@ public class LLNode implements Node {
 
 	@Override
 	public void setNext(Node next) {
-		// TODO Auto-generated method stub
-
+		this.next = (LLNode) next;
 	}
 
 	@Override
 	public void setPrev(Node prev) {
-		// TODO Auto-generated method stub
-
+		this.prev = (LLNode) prev;
 	}
 
 }
