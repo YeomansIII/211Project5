@@ -1,23 +1,19 @@
 public class LLNode implements Node {
 
-	@SuppressWarnings("rawtypes")
 	private Comparable data;
 	protected LLNode next;
 	protected LLNode prev;
 
-	@SuppressWarnings("rawtypes")
 	public LLNode(Comparable c) {
 		data = c;
 	}
 
-	@SuppressWarnings("rawtypes")
 	@Override
 	public Comparable getData() {
 
 		return data;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public Node add(Node thing) {
 		System.out.println(thing.getData().toString());
@@ -43,7 +39,6 @@ public class LLNode implements Node {
 		return getStart();
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public Node search(Comparable item) {
 		// LLNode current = getStart();
