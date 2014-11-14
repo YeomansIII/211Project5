@@ -1,3 +1,6 @@
+//Jason Yeomans
+//Pedro De Jesus
+
 public class LLNode implements Node {
 
 	private Comparable data;
