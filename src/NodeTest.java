@@ -15,6 +15,7 @@ public class NodeTest {
 		Node n2 = new LLNode(p2);
 		Node n3 = new LLNode(p3);
 		n.add(n2);
+		
 		n.add(n3);
 		assertEquals(n.search(p), n);
 		assertEquals(n.search(p2), n2);
