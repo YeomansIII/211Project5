@@ -21,12 +21,14 @@ public class LLNode implements Node {
 	@SuppressWarnings("unchecked")
 	@Override
 	public Node add(Node thing) {
-		// TODO Auto-generated method stub
-		LLNode start;
-		LLNode current = this;
+		System.out.println(thing.getData().toString());
+		LLNode current = getStart();
+		//LLNode current = this;
 		while(current.next != null) {
-			if(current.getData().compareTo(thing.getData()) < current.next.getData().compareTo(thing.getData())) {
-				System.out.println("Success Add IF STATEMENT");
+			if((current.getData().compareTo(thing.getData()) < 0) && (current.next.getData().compareTo(thing.getData()) > 0)) {
+				//System.out.println("Success Add IF STATEMENT");
+				thing.setNext(current.next);
+				thing.setPrev(current);
 				current.next.setPrev(thing);
 				current.setNext(thing);
 				break;
@@ -37,19 +39,22 @@ public class LLNode implements Node {
 		if(current.next==null) {
 			current.setNext(thing);
 		}
-		
-		current = this;
-		while(current.prev != null) {
-			current = current.prev;
-		}
-		
-		return current;
+
+		return getStart();
 	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public Node search(Comparable item) {
-		// TODO Auto-generated method stub
+		//LLNode current = getStart();
+		LLNode current = this;
+		while(current.next != null) {
+			System.out.println(current.getData().toString());
+			if(current.getData().compareTo(item)==0) {
+				return current;
+			}
+			current = current.next;
+		}
 		return null;
 	}
 
@@ -61,6 +66,14 @@ public class LLNode implements Node {
 	@Override
 	public void setPrev(Node prev) {
 		this.prev = (LLNode) prev;
+	}
+	
+	private LLNode getStart() {
+		LLNode current = this;
+		while(current.prev != null) {
+			current = current.prev;
+		}
+		return current;
 	}
 
 }
